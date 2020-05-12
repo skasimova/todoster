@@ -10,6 +10,8 @@ form.addEventListener('submit', event => {
     // вызываю функцию по созданию todoшки и передаю туда значение inputForm (а оно соответствует введённому в entrybox)
     createToDo(inputForm.value);
 
+    saveToLocalStorage(inputForm.value);
+
     // удаляю введённый текст из формочки
     inputForm.value = "";
 });
@@ -38,6 +40,8 @@ function createToDo(inputText) {
             // a через closest я ищу ближайшего подходящего родителя, т.е. того, который совпадает с тем, что в скобках)
             // и удаляю родителя (то есть всю todoшку) вместе со всеми его детьми (брр)
             event.target.closest(".todo_element").remove();
+            // удаляем элемент из local storage
+            removeFromLocalStorage();
         }
     })
 
@@ -56,3 +60,25 @@ function createToDo(inputText) {
     listContainer.appendChild(todoElement);
 }
 
+// сохраняем текст тудушки в local storage. added_todos это я обозначила новый ключ, типа, название ячейки,
+// в которой будут храниться добавленные тудушки
+function saveToLocalStorage (inputText) {
+    localStorage.setItem("added_todos", inputText);
+}
+
+// функция, чтобы элемент удалялся из local storage
+function removeFromLocalStorage () {
+    localStorage.removeItem("added_todos");
+}
+
+// извлекаем текст из local storage при открытии страницы
+function extractFromLocalStorage () {
+    let savedTodos = localStorage.getItem("added_todos");
+
+    if (savedTodos) {
+        createToDo(savedTodos);
+    }
+}
+
+// если здесь не написать вызов функции, то при открытии страницы ничего не экстрактнется
+extractFromLocalStorage();
