@@ -1,0 +1,83 @@
+html {
+    font-size: 16px;
+}
+body {
+    background-color: #ded4d4;
+    font-family: 'DM Mono', monospace;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+}
+
+input {
+    line-height: normal;
+}
+
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+.todo_container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15%;
+    width: 500px;
+}
+
+.form_container {
+    position: relative;
+}
+
+
+
+.todo_form {
+    display: flex;
+}
+
+.todo_element {
+    display: flex;
+    margin-top: 10px;
+}
+
+.todo_element_container {
+    display: flex;
+}
+
+.todo_element_text {
+    display: flex;
+    font-size: 2em;
+}
+
+.todo_checkbox {
+    display: flex;
+}
+
+.entrybox {
+    background-color: white;
+    display: flex;
+    flex-grow: 1;
+    height: 40px;
+    font-size: 1em;
+}
+
+.submitbutton {
+    background-color: yellow;
+    display: flex;
+    padding: 0 12px;
+}
