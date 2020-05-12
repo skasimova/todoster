@@ -57,15 +57,18 @@ h1 {
 
 .todo_element_container {
     display: flex;
+    align-items: center;
 }
 
 .todo_element_text {
     display: flex;
     font-size: 2em;
+    flex-grow: 1;
 }
 
 .todo_checkbox {
     display: flex;
+    margin-right: 10px;
 }
 
 .entrybox {
