@@ -28,21 +28,18 @@ function createToDo(inputText) {
     let todoElementContainer = document.createElement("div");
     todoElementContainer.setAttribute("class", "todo_element_container");
 
-    let todoCheckbox = document.createElement("input");
+    let todoCheckbox = document.createElement("div");
     todoCheckbox.setAttribute("class", "todo_checkbox");
-    todoCheckbox.setAttribute("type", "checkbox");
 
     // создаю событие на отмечание todoшки галочкой
-    todoCheckbox.addEventListener('change', event => {
+    todoElement.addEventListener('click', event => {
         // если checkbox (event.target это checkbox) отмечен галочкой, тооо...
-        if (event.target.checked) {
             // убираем всю todoшку (и текст, и контейнер, и чекбокс и тд).
             // a через closest я ищу ближайшего подходящего родителя, т.е. того, который совпадает с тем, что в скобках)
             // и удаляю родителя (то есть всю todoшку) вместе со всеми его детьми (брр)
             event.target.closest(".todo_element").remove();
             // удаляем элемент из local storage
             removeFromLocalStorage(inputText);
-        }
     })
 
     let todoElementText = document.createElement("div");

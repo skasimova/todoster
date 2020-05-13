@@ -55,6 +55,7 @@ h1 {
 
 .todo_element {
     display: flex;
+    cursor: pointer;
 }
 
 .todo_element + .todo_element {
@@ -68,14 +69,24 @@ h1 {
 
 .todo_element_text {
     display: flex;
-    font-size: 2em;
+    font-size: 1.6em;
     flex-grow: 1;
     line-height: 1.3;
 }
 
 .todo_checkbox {
     display: flex;
-    margin-right: 10px;
+    height: 24px;
+    width: 24px;
+    border-radius: 50px;
+    border: solid 1px;
+    margin-right: 20px;
+    transition: border-color .15s, border-width .15s;
+}
+
+.todo_element:hover .todo_checkbox {
+    border-color: #ffeb00db;
+    border-width: 2px;
 }
 
 .entrybox {
@@ -83,10 +94,11 @@ h1 {
     display: flex;
     flex-grow: 1;
     height: 50px;
-    font-size: 2em;
+    font-size: 1.6em;
     padding-left: 6px;
     margin-right: 10px;
     border: 1px solid #00000030;
+    border-radius: 5px;
 }
 
 .submitbutton {
@@ -94,4 +106,5 @@ h1 {
     display: flex;
     padding: 0 12px;
     border: 1px solid #ffe000d9;
+    border-radius: 5px;
 }
