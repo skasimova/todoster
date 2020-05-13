@@ -33,13 +33,18 @@ function createToDo(inputText) {
 
     // создаю событие на отмечание todoшки галочкой
     todoElement.addEventListener('click', event => {
-        // если checkbox (event.target это checkbox) отмечен галочкой, тооо...
+        event.preventDefault();
+
+        todoElement.setAttribute("class", "todo_element completed");
+
+        setTimeout(function() {
+            // если checkbox (event.target это checkbox) отмечен галочкой, тооо...
             // убираем всю todoшку (и текст, и контейнер, и чекбокс и тд).
-            // a через closest я ищу ближайшего подходящего родителя, т.е. того, который совпадает с тем, что в скобках)
-            // и удаляю родителя (то есть всю todoшку) вместе со всеми его детьми (брр)
-            event.target.closest(".todo_element").remove();
+            todoElement.remove();
+
             // удаляем элемент из local storage
             removeFromLocalStorage(inputText);
+        }, 300);
     })
 
     let todoElementText = document.createElement("div");
@@ -59,7 +64,7 @@ function createToDo(inputText) {
 
 // сохраняем текст ОДНОЙ тудушки в local storage. added_todos это я обозначила новый ключ, типа, название ячейки,
 // в которой будут храниться добавленные тудушки
-function saveToLocalStorage (inputText) {
+function saveToLocalStorage(inputText) {
 
     // три этапа: 1) берём текст тудушек из локал хранилища
     // преобразуем его в массив (тк в строку не сможем добавить новую, это как бы "бумажка", а нам нужна
@@ -67,7 +72,7 @@ function saveToLocalStorage (inputText) {
 
     let savedTodosArray;
 
-    if(localStorage.getItem('added_todos') === null) {
+    if (localStorage.getItem('added_todos') === null) {
         savedTodosArray = [];
     } else {
         savedTodosArray = JSON.parse(localStorage.getItem('added_todos'));
@@ -80,12 +85,13 @@ function saveToLocalStorage (inputText) {
     localStorage.setItem('added_todos', JSON.stringify(savedTodosArray));
 }
 
+
 // функция, чтобы элемент удалялся из local storage
-function removeFromLocalStorage (inputText) {
+function removeFromLocalStorage(inputText) {
     let savedTodos = JSON.parse(localStorage.getItem("added_todos"));
 
- if (savedTodos) {
-        savedTodos.some(function(oneTodoText, index){
+    if (savedTodos) {
+        savedTodos.some(function (oneTodoText, index) {
             if (oneTodoText === inputText) {
                 savedTodos.splice(index, 1);
                 return true;
@@ -97,11 +103,11 @@ function removeFromLocalStorage (inputText) {
 }
 
 // извлекаем массив с тудушками из local storage при открытии страницы
-function extractFromLocalStorage () {
+function extractFromLocalStorage() {
     let savedTodos = JSON.parse(localStorage.getItem("added_todos"));
 
     if (savedTodos) {
-        savedTodos.forEach(function(oneTodoText){
+        savedTodos.forEach(function (oneTodoText) {
             createToDo(oneTodoText);
         });
     }

@@ -56,6 +56,7 @@ h1 {
 .todo_element {
     display: flex;
     cursor: pointer;
+    transition: opacity 0.3s;
 }
 
 .todo_element + .todo_element {
@@ -72,6 +73,15 @@ h1 {
     font-size: 1.6em;
     flex-grow: 1;
     line-height: 1.3;
+}
+
+.todo_element.completed {
+    opacity: 0;
+}
+
+.completed .todo_element_text {
+    text-decoration: line-through;
+
 }
 
 .todo_checkbox {
@@ -108,3 +118,4 @@ h1 {
     border: 1px solid #ffe000d9;
     border-radius: 5px;
 }
+
