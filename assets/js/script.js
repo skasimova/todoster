@@ -82,3 +82,4 @@ function extractFromLocalStorage () {
 
 // если здесь не написать вызов функции, то при открытии страницы ничего не экстрактнется
 extractFromLocalStorage();
+
