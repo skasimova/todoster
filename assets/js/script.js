@@ -41,7 +41,7 @@ function createToDo(inputText) {
             // и удаляю родителя (то есть всю todoшку) вместе со всеми его детьми (брр)
             event.target.closest(".todo_element").remove();
             // удаляем элемент из local storage
-            removeFromLocalStorage();
+            removeFromLocalStorage(inputText);
         }
     })
 
@@ -60,23 +60,53 @@ function createToDo(inputText) {
     listContainer.appendChild(todoElement);
 }
 
-// сохраняем текст тудушки в local storage. added_todos это я обозначила новый ключ, типа, название ячейки,
+// сохраняем текст ОДНОЙ тудушки в local storage. added_todos это я обозначила новый ключ, типа, название ячейки,
 // в которой будут храниться добавленные тудушки
 function saveToLocalStorage (inputText) {
-    localStorage.setItem("added_todos", inputText);
+
+    // три этапа: 1) берём текст тудушек из локал хранилища
+    // преобразуем его в массив (тк в строку не сможем добавить новую, это как бы "бумажка", а нам нужна
+    // "пачка" бумажек (вся нижеприведённая функция нужна для того чтобы преобразовать строку к массиву)
+
+    let savedTodosArray;
+
+    if(localStorage.getItem('added_todos') === null) {
+        savedTodosArray = [];
+    } else {
+        savedTodosArray = JSON.parse(localStorage.getItem('added_todos'));
+    }
+
+    // 2) добавляем ещё одну бумажку (тудушку) в пачку бумажек (массив тудушек)
+    savedTodosArray.push(inputText);
+
+    // 3) преобразую весь массив обратно к строке и сохраняю его с ключом added_todos (типа закрыли папочку и засунули обратно)
+    localStorage.setItem('added_todos', JSON.stringify(savedTodosArray));
 }
 
 // функция, чтобы элемент удалялся из local storage
-function removeFromLocalStorage () {
-    localStorage.removeItem("added_todos");
+function removeFromLocalStorage (inputText) {
+    let savedTodos = JSON.parse(localStorage.getItem("added_todos"));
+
+ if (savedTodos) {
+        savedTodos.some(function(oneTodoText, index){
+            if (oneTodoText === inputText) {
+                savedTodos.splice(index, 1);
+                return true;
+            }
+        });
+        // запихала обратно тудушки, которые не надо удалять (неудалённые тудушки)
+        localStorage.setItem('added_todos', JSON.stringify(savedTodos));
+    }
 }
 
-// извлекаем текст из local storage при открытии страницы
+// извлекаем массив с тудушками из local storage при открытии страницы
 function extractFromLocalStorage () {
-    let savedTodos = localStorage.getItem("added_todos");
+    let savedTodos = JSON.parse(localStorage.getItem("added_todos"));
 
     if (savedTodos) {
-        createToDo(savedTodos);
+        savedTodos.forEach(function(oneTodoText){
+            createToDo(oneTodoText);
+        });
     }
 }
 
