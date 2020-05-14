@@ -55,7 +55,6 @@ h1 {
 
 .todo_element {
     display: flex;
-    cursor: pointer;
     transition: opacity 0.3s;
 }
 
@@ -66,6 +65,7 @@ h1 {
 .todo_element_container {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .todo_element_text {
@@ -89,14 +89,13 @@ h1 {
     height: 24px;
     width: 24px;
     border-radius: 50px;
-    border: solid 1px;
+    border: dotted 1px;
     margin-right: 20px;
     transition: border-color .15s, border-width .15s;
 }
 
-.todo_element:hover .todo_checkbox {
-    border-color: #ffeb00db;
-    border-width: 2px;
+.todo_element_container:hover .todo_checkbox {
+    border: solid 2px #ffeb00db;
 }
 
 .entrybox {
@@ -117,5 +116,24 @@ h1 {
     padding: 0 12px;
     border: 1px solid #ffe000d9;
     border-radius: 5px;
+}
+
+.closebutton {
+    height: 24px;
+    width: 24px;
+    padding: 1px 6px;
+    border-radius: 5px;
+    left: 555px;
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.todo_element:hover .closebutton {
+    opacity: 1;
+}
+
+.closebutton:after {
+    content: "del";
 }
 

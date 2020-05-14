@@ -31,6 +31,9 @@ function createToDo(inputText) {
     let todoCheckbox = document.createElement("div");
     todoCheckbox.setAttribute("class", "todo_checkbox");
 
+    let closeButton = document.createElement("div");
+    closeButton.setAttribute("class", 'closebutton');
+
     // создаю событие на отмечание todoшки галочкой
     todoElement.addEventListener('click', event => {
         event.preventDefault();
@@ -49,6 +52,7 @@ function createToDo(inputText) {
 
     let todoElementText = document.createElement("div");
     todoElementText.setAttribute("class", "todo_element_text");
+
     // заполнила вышестоящий div текстом, который мне пришёл
     todoElementText.innerHTML = inputText;
 
@@ -58,6 +62,7 @@ function createToDo(inputText) {
 
     // и пошло-поехало по аналогии дальше
     todoElement.appendChild(todoElementContainer);
+    todoElement.appendChild(closeButton);
 
     listContainer.appendChild(todoElement);
 }
