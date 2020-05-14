@@ -25,19 +25,11 @@ function createToDo(inputText) {
     let todoElement = document.createElement("div");
     todoElement.setAttribute("class", "todo_element");
 
-    let todoElementContainer = document.createElement("div");
-    todoElementContainer.setAttribute("class", "todo_element_container");
-
-    let todoCheckbox = document.createElement("div");
-    todoCheckbox.setAttribute("class", "todo_checkbox");
-
-    let closeButton = document.createElement("div");
-    closeButton.setAttribute("class", 'closebutton');
-
     // создаю событие на отмечание todoшки галочкой
     todoElement.addEventListener('click', event => {
         event.preventDefault();
 
+        // здесь я вешаю на кликнутый элемент класс комплитид
         todoElement.setAttribute("class", "todo_element completed");
 
         setTimeout(function() {
@@ -50,6 +42,31 @@ function createToDo(inputText) {
         }, 300);
     })
 
+    let todoElementContainer = document.createElement("div");
+    todoElementContainer.setAttribute("class", "todo_element_container");
+
+    let todoCheckbox = document.createElement("div");
+    todoCheckbox.setAttribute("class", "todo_checkbox");
+
+    let closeButton = document.createElement("div");
+    closeButton.setAttribute("class", 'closebutton');
+    closeButton.innerHTML = 'del';
+
+    closeButton.addEventListener('click', event => {
+        // "не делай ничего, останови всё"
+        event.preventDefault();
+        // чтобы он не пошёл "наверх" к родителю и не посылал событие выше по родителям
+        event.stopPropagation();
+
+        todoElement.setAttribute("class", 'todo_element deleted');
+
+        setTimeout(function() {
+            todoElement.remove();
+            removeFromLocalStorage(inputText);
+        }, 200);
+        }
+    )
+
     let todoElementText = document.createElement("div");
     todoElementText.setAttribute("class", "todo_element_text");
 
@@ -59,10 +76,10 @@ function createToDo(inputText) {
     // вставила созданные элементы (toDoCheckbox, todoElementText) на страницу (в todoElementContainer) (выше я их как бы придумала, а теперь вставила на страницу)
     todoElementContainer.appendChild(todoCheckbox);
     todoElementContainer.appendChild(todoElementText);
+    todoElementContainer.appendChild(closeButton);
 
     // и пошло-поехало по аналогии дальше
     todoElement.appendChild(todoElementContainer);
-    todoElement.appendChild(closeButton);
 
     listContainer.appendChild(todoElement);
 }

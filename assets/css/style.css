@@ -66,6 +66,7 @@ h1 {
     display: flex;
     align-items: center;
     cursor: pointer;
+    padding: 0 45px 0 40px;
 }
 
 .todo_element_text {
@@ -75,22 +76,22 @@ h1 {
     line-height: 1.3;
 }
 
-.todo_element.completed {
+.todo_element.completed, .todo_element.deleted {
     opacity: 0;
 }
 
 .completed .todo_element_text {
     text-decoration: line-through;
-
 }
 
 .todo_checkbox {
     display: flex;
+    left: 0;
+    position: absolute;
     height: 24px;
     width: 24px;
     border-radius: 50px;
     border: dotted 1px;
-    margin-right: 20px;
     transition: border-color .15s, border-width .15s;
 }
 
@@ -131,9 +132,5 @@ h1 {
 
 .todo_element:hover .closebutton {
     opacity: 1;
-}
-
-.closebutton:after {
-    content: "del";
 }
 
