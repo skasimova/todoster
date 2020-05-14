@@ -91,11 +91,11 @@ h1 {
     height: 24px;
     width: 24px;
     border-radius: 50px;
-    border: dotted 1px;
+    border: dashed 1px;
     transition: border-color .15s, border-width .15s;
 }
 
-.todo_element_container:hover .todo_checkbox {
+.todo_element:hover .todo_checkbox {
     border: solid 2px #ffeb00db;
 }
 
@@ -134,3 +134,10 @@ h1 {
     opacity: 1;
 }
 
+.show_completed_todos {
+    background-color: #ffeb00db;
+    display: flex;
+    padding: 0 12px;
+    border: 1px solid #ffe000d9;
+    border-radius: 5px;
+}

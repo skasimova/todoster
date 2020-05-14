@@ -1,0 +1,46 @@
+html {
+    font-size: 16px;
+}
+body {
+    background-color: #ffffffa3;
+    font-family: 'DM Mono', monospace;
+    color: #4e4d4d;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+}
+
+input {
+    line-height: normal;
+}
+
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+.todo_container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15%;
+    width: 600px;
+}
+
+.list_container {
+    margin-top: 40px;
+}

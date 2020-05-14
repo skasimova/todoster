@@ -22,8 +22,8 @@ let listContainer = document.getElementById('list_container');
 // inputText - название того текста (это я сама его так назвала), который мне придёт
 function createToDo(inputText) {
     // создаём новые элементы (на данный момент они никуда не поставлены на странице)
-    let todoElement = document.createElement("div");
-    todoElement.setAttribute("class", "todo_element");
+    let todoElement = document.createElement('div');
+    todoElement.setAttribute('class', 'todo_element');
 
     // создаю событие на отмечание todoшки галочкой
     todoElement.addEventListener('click', event => {
