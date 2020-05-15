@@ -41,6 +41,63 @@ h1 {
     width: 600px;
 }
 
+.todo_element {
+    display: flex;
+    transition: opacity 0.3s;
+}
+
+.todo_element + .todo_element {
+    margin-top: 20px;
+}
+
+.todo_element_container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 45px 0 40px;
+}
+
+.todo_checkbox {
+    display: flex;
+    left: 0;
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    border-radius: 50px;
+    border: dashed 1px;
+    transition: border-color .15s, border-width .15s;
+}
+
+.todo_element:hover .todo_checkbox {
+    border: solid 2px #ffeb00db;
+}
+
+.todo_element_text {
+    display: flex;
+    font-size: 1.6em;
+    flex-grow: 1;
+    line-height: 1.3;
+}
+
+.todo_element.completed, .todo_element.deleted {
+    opacity: 0;
+}
+
+.closebutton {
+    height: 24px;
+    width: 24px;
+    padding: 1px 6px;
+    border-radius: 5px;
+    left: 555px;
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.todo_element:hover .closebutton {
+    opacity: 1;
+}
+
 .show_previous_page {
     text-decoration: none;
     padding: 5px 0;
