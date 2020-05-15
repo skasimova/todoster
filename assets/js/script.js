@@ -50,11 +50,11 @@ function createToDo(inputText) {
     let todoCheckbox = document.createElement("div");
     todoCheckbox.setAttribute("class", "todo_checkbox");
 
-    let closeButton = document.createElement("div");
-    closeButton.setAttribute("class", 'closebutton');
-    closeButton.innerHTML = 'del';
+    let deleteButton = document.createElement("div");
+    deleteButton.setAttribute("class", 'deletebutton');
+    deleteButton.innerHTML = 'del';
 
-    closeButton.addEventListener('click', event => {
+    deleteButton.addEventListener('click', event => {
             // "не делай ничего, останови всё"
             event.preventDefault();
             // чтобы он не пошёл "наверх" к родителю и не посылал событие выше по родителям
@@ -78,7 +78,7 @@ function createToDo(inputText) {
     // вставила созданные элементы (toDoCheckbox, todoElementText) на страницу (в todoElementContainer) (выше я их как бы придумала, а теперь вставила на страницу)
     todoElementContainer.appendChild(todoCheckbox);
     todoElementContainer.appendChild(todoElementText);
-    todoElementContainer.appendChild(closeButton);
+    todoElementContainer.appendChild(deleteButton);
 
     // и пошло-поехало по аналогии дальше
     todoElement.appendChild(todoElementContainer);
