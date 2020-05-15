@@ -135,9 +135,12 @@ h1 {
 }
 
 .show_completed_todos {
-    background-color: #ffeb00db;
+    background-color: #ffffff;
     display: flex;
     padding: 0 12px;
-    border: 1px solid #ffe000d9;
+    border: 1px solid #ffffff;
     border-radius: 5px;
+    position: relative;
+    left: 602px;
+    top: -37px;
 }
