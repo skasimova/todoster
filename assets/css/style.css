@@ -46,7 +46,7 @@ h1 {
 }
 
 .list_container {
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .todo_form {
@@ -135,12 +135,17 @@ h1 {
 }
 
 .show_completed_todos {
-    background-color: #ffffff;
-    display: flex;
-    padding: 0 12px;
-    border: 1px solid #ffffff;
-    border-radius: 5px;
-    position: relative;
-    left: 602px;
-    top: -37px;
+    text-decoration: none;
+    padding: 5px 0;
+    display: inline-block;
+    line-height: 1;
+    color: #4e4d4d;
+}
+
+.completed_link {
+    margin-top: 10px;
+}
+
+.completed_link:hover .show_completed_todos {
+    color: #ffeb00db;
 }

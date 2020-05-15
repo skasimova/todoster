@@ -41,6 +41,18 @@ h1 {
     width: 600px;
 }
 
+.show_previous_page {
+    text-decoration: none;
+    padding: 5px 0;
+    display: inline-block;
+    line-height: 1;
+    color: #4e4d4d;
+}
+
+.previous_page_link {
+    margin-top: 10px;
+}
+
 .list_container {
-    margin-top: 40px;
+    margin-top: 20px;
 }

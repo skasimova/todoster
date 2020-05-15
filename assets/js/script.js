@@ -32,13 +32,15 @@ function createToDo(inputText) {
         // здесь я вешаю на кликнутый элемент класс комплитид
         todoElement.setAttribute("class", "todo_element completed");
 
-        setTimeout(function() {
+        setTimeout(function () {
             // если checkbox (event.target это checkbox) отмечен галочкой, тооо...
             // убираем всю todoшку (и текст, и контейнер, и чекбокс и тд).
             todoElement.remove();
 
             // удаляем элемент из local storage
             removeFromLocalStorage(inputText);
+
+            saveToSecondLocalStorage(inputText);
         }, 300);
     })
 
@@ -53,17 +55,17 @@ function createToDo(inputText) {
     closeButton.innerHTML = 'del';
 
     closeButton.addEventListener('click', event => {
-        // "не делай ничего, останови всё"
-        event.preventDefault();
-        // чтобы он не пошёл "наверх" к родителю и не посылал событие выше по родителям
-        event.stopPropagation();
+            // "не делай ничего, останови всё"
+            event.preventDefault();
+            // чтобы он не пошёл "наверх" к родителю и не посылал событие выше по родителям
+            event.stopPropagation();
 
-        todoElement.setAttribute("class", 'todo_element deleted');
+            todoElement.setAttribute("class", 'todo_element deleted');
 
-        setTimeout(function() {
-            todoElement.remove();
-            removeFromLocalStorage(inputText);
-        }, 200);
+            setTimeout(function () {
+                todoElement.remove();
+                removeFromLocalStorage(inputText);
+            }, 200);
         }
     )
 
@@ -83,6 +85,23 @@ function createToDo(inputText) {
 
     listContainer.appendChild(todoElement);
 }
+
+
+function saveToSecondLocalStorage(inputText) {
+
+    let savedTodosArray;
+
+    if (localStorage.getItem('completed_todos') === null) {
+        savedTodosArray = [];
+    } else {
+        savedTodosArray = JSON.parse(localStorage.getItem('completed_todos'));
+    }
+
+    savedTodosArray.push(inputText);
+
+    localStorage.setItem('completed_todos', JSON.stringify(savedTodosArray));
+}
+
 
 // сохраняем текст ОДНОЙ тудушки в local storage. added_todos это я обозначила новый ключ, типа, название ячейки,
 // в которой будут храниться добавленные тудушки
