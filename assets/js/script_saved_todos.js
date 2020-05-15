@@ -8,7 +8,8 @@ function createToDo(inputText) {
     todoElementContainer.setAttribute("class", "todo_element_container");
 
     let todoCheckbox = document.createElement("div");
-    todoCheckbox.setAttribute("class", "todo_checkbox");
+    todoCheckbox.setAttribute("class", "undo_button");
+    todoCheckbox.innerHTML = 'undo';
 
     let closeButton = document.createElement("div");
     closeButton.setAttribute("class", 'closebutton');
