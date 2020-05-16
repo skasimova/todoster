@@ -4,8 +4,7 @@ function completedCount() {
     let countedElements = document.getElementsByClassName('todo_element').length;
     let counter = document.getElementById('completed_count');
 
-    counter.innerText = countedElements;
-
+    counter.innerText = countedElements === 0 ? 'none' : countedElements;
 }
 
 function createToDo(inputText) {

@@ -140,13 +140,14 @@ h1 {
     display: inline-block;
     line-height: 1;
     color: #4e4d4d;
+    transition: color 0.15s;
 }
 
 .completed_link {
     margin-top: 10px;
 }
 
-.completed_link:hover .show_completed_todos {
+.show_completed_todos:hover {
     color: #ffeb00db;
     font-weight: 600;
 }
