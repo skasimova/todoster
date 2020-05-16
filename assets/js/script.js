@@ -13,7 +13,7 @@ form.addEventListener('submit', event => {
     saveToLocalStorage(inputForm.value);
 
     // удаляю введённый текст из формочки
-    inputForm.value = "";
+    inputForm.value = '';
 });
 
 // ищу list_container в ДОМе, чтобы в него потом вставить засабмиченные тудушки
@@ -30,7 +30,7 @@ function createToDo(inputText) {
         event.preventDefault();
 
         // здесь я вешаю на кликнутый элемент класс комплитид
-        todoElement.setAttribute("class", "todo_element completed");
+        todoElement.setAttribute('class', 'todo_element completed');
 
         setTimeout(function () {
             // если checkbox (event.target это checkbox) отмечен галочкой, тооо...
@@ -44,14 +44,14 @@ function createToDo(inputText) {
         }, 300);
     })
 
-    let todoElementContainer = document.createElement("div");
-    todoElementContainer.setAttribute("class", "todo_element_container");
+    let todoElementContainer = document.createElement('div');
+    todoElementContainer.setAttribute('class', 'todo_element_container');
 
-    let todoCheckbox = document.createElement("div");
-    todoCheckbox.setAttribute("class", "todo_checkbox");
+    let todoCheckbox = document.createElement('div');
+    todoCheckbox.setAttribute('class', 'todo_checkbox');
 
-    let deleteButton = document.createElement("div");
-    deleteButton.setAttribute("class", 'deletebutton');
+    let deleteButton = document.createElement('div');
+    deleteButton.setAttribute('class', 'deletebutton');
     deleteButton.innerHTML = 'del';
 
     deleteButton.addEventListener('click', event => {
@@ -60,7 +60,7 @@ function createToDo(inputText) {
             // чтобы он не пошёл "наверх" к родителю и не посылал событие выше по родителям
             event.stopPropagation();
 
-            todoElement.setAttribute("class", 'todo_element deleted');
+            todoElement.setAttribute('class', 'todo_element deleted');
 
             setTimeout(function () {
                 todoElement.remove();
@@ -69,8 +69,8 @@ function createToDo(inputText) {
         }
     )
 
-    let todoElementText = document.createElement("div");
-    todoElementText.setAttribute("class", "todo_element_text");
+    let todoElementText = document.createElement('div');
+    todoElementText.setAttribute('class', 'todo_element_text');
 
     // заполнила вышестоящий div текстом, который мне пришёл
     todoElementText.innerHTML = inputText;
@@ -129,7 +129,7 @@ function saveToLocalStorage(inputText) {
 
 // функция, чтобы элемент удалялся из local storage
 function removeFromLocalStorage(inputText) {
-    let savedTodos = JSON.parse(localStorage.getItem("added_todos"));
+    let savedTodos = JSON.parse(localStorage.getItem('added_todos'));
 
     if (savedTodos) {
         savedTodos.some(function (oneTodoText, index) {
@@ -145,7 +145,7 @@ function removeFromLocalStorage(inputText) {
 
 // извлекаем массив с тудушками из local storage при открытии страницы
 function extractFromLocalStorage() {
-    let savedTodos = JSON.parse(localStorage.getItem("added_todos"));
+    let savedTodos = JSON.parse(localStorage.getItem('added_todos'));
 
     if (savedTodos) {
         savedTodos.forEach(function (oneTodoText) {

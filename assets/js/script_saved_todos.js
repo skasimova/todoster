@@ -5,6 +5,7 @@ function completedCount() {
     let counter = document.getElementById('completed_count');
 
     counter.innerText = countedElements;
+
 }
 
 function createToDo(inputText) {
@@ -12,17 +13,17 @@ function createToDo(inputText) {
     todoElement.setAttribute('class', 'todo_element');
 
     let todoElementContainer = document.createElement("div");
-    todoElementContainer.setAttribute("class", "todo_element_container");
+    todoElementContainer.setAttribute('class', 'todo_element_container');
 
-    let undoButton = document.createElement("div");
-    undoButton.setAttribute("class", "undo_button");
+    let undoButton = document.createElement('div');
+    undoButton.setAttribute('class', 'undo_button');
     undoButton.innerHTML = 'undo';
 
     undoButton.addEventListener('click', event => {
         event.preventDefault();
         event.stopPropagation();
 
-        todoElement.setAttribute("class", 'todo_element undone');
+        todoElement.setAttribute('class', 'todo_element undone');
 
         setTimeout(function () {
 
@@ -37,14 +38,14 @@ function createToDo(inputText) {
     })
 
     let deleteButton = document.createElement("div");
-    deleteButton.setAttribute("class", 'deletebutton');
+    deleteButton.setAttribute('class', 'deletebutton');
     deleteButton.innerHTML = 'del';
 
     deleteButton.addEventListener('click', event => {
             event.preventDefault();
             event.stopPropagation();
 
-            todoElement.setAttribute("class", 'todo_element deleted');
+            todoElement.setAttribute('class', 'todo_element deleted');
 
             setTimeout(function () {
                 todoElement.remove();
@@ -56,8 +57,8 @@ function createToDo(inputText) {
         }
     )
 
-    let todoElementText = document.createElement("div");
-    todoElementText.setAttribute("class", "todo_element_text");
+    let todoElementText = document.createElement('div');
+    todoElementText.setAttribute('class', 'todo_element_text');
 
     todoElementText.innerHTML = inputText;
 
@@ -72,7 +73,7 @@ function createToDo(inputText) {
 }
 
 function removeFromLocalStorage(inputText) {
-    let savedTodos = JSON.parse(localStorage.getItem("completed_todos"));
+    let savedTodos = JSON.parse(localStorage.getItem('completed_todos'));
 
     if (savedTodos) {
         savedTodos.some(function (oneTodoText, index) {
@@ -102,7 +103,7 @@ function saveToSecondLocalStorage(inputText) {
 }
 
 function extractFromLocalStorage() {
-    let savedTodos = JSON.parse(localStorage.getItem("completed_todos"));
+    let savedTodos = JSON.parse(localStorage.getItem('completed_todos'));
 
     if (savedTodos) {
         savedTodos.forEach(function (oneTodoText) {
@@ -111,6 +112,7 @@ function extractFromLocalStorage() {
     }
 
     completedCount();
+
 }
 
 extractFromLocalStorage();
