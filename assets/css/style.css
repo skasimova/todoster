@@ -151,3 +151,78 @@ h1 {
     color: #ffeb00db;
     font-weight: 600;
 }
+
+.completed_count {
+    position: relative;
+    color: #ffeb00db;
+}
+
+.completed_todo_element {
+    display: flex;
+    transition: opacity 0.3s;
+    cursor: default;
+}
+
+.completed_todo_element + .completed_todo_element {
+    margin-top: 20px;
+}
+
+.completed_todo_element_container {
+    display: flex;
+    align-items: center;
+    padding: 0 45px 0 40px;
+}
+
+.undo_button {
+    display: flex;
+    left: 0;
+    position: absolute;
+    color: #0000001f;
+    cursor: pointer;
+}
+
+.undo_button:hover {
+    color: #ffeb00db;
+    font-weight: 600;
+}
+
+.completed_todo_element_text {
+    display: flex;
+    font-size: 1.6em;
+    flex-grow: 1;
+    line-height: 1.3;
+    margin-left: 10px;
+}
+
+.deletebutton {
+    height: 24px;
+    width: 24px;
+    padding: 1px 6px;
+    border-radius: 5px;
+    left: 555px;
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.completed_todo_element:hover .deletebutton {
+    opacity: 1;
+}
+
+.show_previous_page {
+    text-decoration: none;
+    padding: 5px 0;
+    display: inline-block;
+    line-height: 1;
+    color: #4e4d4d;
+    transition: color 0.15s;
+}
+
+.show_previous_page:hover {
+    color: #ffeb00db;
+    font-weight: 600;
+}
+
+.previous_page_link {
+    margin-top: 10px;
+}

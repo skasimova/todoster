@@ -1,7 +1,7 @@
 let listContainer = document.getElementById('list_container');
 
 function completedCount() {
-    let countedElements = document.getElementsByClassName('todo_element').length;
+    let countedElements = document.getElementsByClassName('completed_todo_element').length;
     let counter = document.getElementById('completed_count');
 
     counter.innerText = countedElements === 0 ? 'none' : countedElements;
@@ -9,7 +9,7 @@ function completedCount() {
 
 function createToDo(inputText) {
     let todoElement = document.createElement('div');
-    todoElement.setAttribute('class', 'todo_element');
+    todoElement.setAttribute('class', 'completed_todo_element');
 
     let todoElementContainer = document.createElement("div");
     todoElementContainer.setAttribute('class', 'todo_element_container');
@@ -22,7 +22,7 @@ function createToDo(inputText) {
         event.preventDefault();
         event.stopPropagation();
 
-        todoElement.setAttribute('class', 'todo_element undone');
+        todoElement.setAttribute('class', 'completed_todo_element undone');
 
         setTimeout(function () {
 
@@ -44,7 +44,7 @@ function createToDo(inputText) {
             event.preventDefault();
             event.stopPropagation();
 
-            todoElement.setAttribute('class', 'todo_element deleted');
+            todoElement.setAttribute('class', 'completed_todo_element deleted');
 
             setTimeout(function () {
                 todoElement.remove();
@@ -57,7 +57,7 @@ function createToDo(inputText) {
     )
 
     let todoElementText = document.createElement('div');
-    todoElementText.setAttribute('class', 'todo_element_text');
+    todoElementText.setAttribute('class', 'completed_todo_element_text');
 
     todoElementText.innerHTML = inputText;
 
