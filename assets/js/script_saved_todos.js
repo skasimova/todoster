@@ -1,32 +1,32 @@
-let listContainer = document.getElementById('list_container');
+let taskList = document.getElementById('task_list');
 
 function completedCount() {
-    let countedElements = document.getElementsByClassName('completed_todo_element').length;
+    let countedElements = document.getElementsByClassName('task').length;
     let counter = document.getElementById('completed_count');
 
     counter.innerText = countedElements === 0 ? 'none' : countedElements;
 }
 
 function createToDo(inputText) {
-    let todoElement = document.createElement('div');
-    todoElement.setAttribute('class', 'completed_todo_element');
+    let task = document.createElement('div');
+    task.setAttribute('class', 'task');
 
-    let todoElementContainer = document.createElement("div");
-    todoElementContainer.setAttribute('class', 'todo_element_container');
+    let taskArea = document.createElement("div");
+    taskArea.setAttribute('class', 'task_area');
 
     let undoButton = document.createElement('div');
-    undoButton.setAttribute('class', 'undo_button');
+    undoButton.setAttribute('class', 'task_undo');
     undoButton.innerHTML = 'undo';
 
     undoButton.addEventListener('click', event => {
         event.preventDefault();
         event.stopPropagation();
 
-        todoElement.setAttribute('class', 'completed_todo_element undone');
+        task.setAttribute('class', 'task undone');
 
         setTimeout(function () {
 
-            todoElement.remove();
+            task.remove();
 
             removeFromLocalStorage(inputText);
 
@@ -37,17 +37,17 @@ function createToDo(inputText) {
     })
 
     let deleteButton = document.createElement("div");
-    deleteButton.setAttribute('class', 'deletebutton');
+    deleteButton.setAttribute('class', 'task_delete');
     deleteButton.innerHTML = 'del';
 
     deleteButton.addEventListener('click', event => {
             event.preventDefault();
             event.stopPropagation();
 
-            todoElement.setAttribute('class', 'completed_todo_element deleted');
+        task.setAttribute('class', 'task deleted');
 
             setTimeout(function () {
-                todoElement.remove();
+                task.remove();
                 removeFromLocalStorage(inputText);
 
                 completedCount();
@@ -56,18 +56,17 @@ function createToDo(inputText) {
         }
     )
 
-    let todoElementText = document.createElement('div');
-    todoElementText.setAttribute('class', 'completed_todo_element_text');
+    let taskText = document.createElement('div');
+    taskText.setAttribute('class', 'task_text');
+    taskText.innerHTML = inputText;
 
-    todoElementText.innerHTML = inputText;
+    taskArea.appendChild(undoButton);
+    taskArea.appendChild(taskText);
+    taskArea.appendChild(deleteButton);
 
-    todoElementContainer.appendChild(undoButton);
-    todoElementContainer.appendChild(todoElementText);
-    todoElementContainer.appendChild(deleteButton);
+    task.appendChild(taskArea);
 
-    todoElement.appendChild(todoElementContainer);
-
-    listContainer.appendChild(todoElement);
+    taskList.appendChild(task);
 
 }
 

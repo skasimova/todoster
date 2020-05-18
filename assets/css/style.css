@@ -1,6 +1,7 @@
 html {
     font-size: 16px;
 }
+
 body {
     background-color: #ffffffa3;
     font-family: 'DM Mono', monospace;
@@ -33,7 +34,13 @@ h1 {
     font-size: 3em;
 }
 
-.todo_container {
+h1 .title_highlight {
+    color: #ffe000;
+}
+
+/* главный контейнер */
+
+.container {
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -41,65 +48,17 @@ h1 {
     width: 600px;
 }
 
-.form_container {
+/* область создания таска */
+
+.creation_area {
     position: relative;
 }
 
-.list_container {
-    margin-top: 20px;
-}
-
-.todo_form {
+.creation_area .creation_form {
     display: flex;
 }
 
-.todo_element {
-    display: flex;
-    transition: opacity 0.3s;
-}
-
-.todo_element + .todo_element {
-    margin-top: 20px;
-}
-
-.todo_element_container {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    padding: 0 45px 0 40px;
-}
-
-.todo_element_text {
-    display: flex;
-    font-size: 1.6em;
-    flex-grow: 1;
-    line-height: 1.3;
-}
-
-.todo_element.completed, .todo_element.deleted {
-    opacity: 0;
-}
-
-.completed .todo_element_text {
-    text-decoration: line-through;
-}
-
-.todo_checkbox {
-    display: flex;
-    left: 0;
-    position: absolute;
-    height: 24px;
-    width: 24px;
-    border-radius: 50px;
-    border: dashed 1px;
-    transition: border-color .15s, border-width .15s;
-}
-
-.todo_element:hover .todo_checkbox {
-    border: solid 2px #ffeb00db;
-}
-
-.entrybox {
+.creation_form .creation_field {
     background-color: white;
     display: flex;
     flex-grow: 1;
@@ -111,7 +70,7 @@ h1 {
     border-radius: 5px;
 }
 
-.submitbutton {
+.creation_form .add_button {
     background-color: #ffeb00db;
     display: flex;
     padding: 0 12px;
@@ -119,22 +78,13 @@ h1 {
     border-radius: 5px;
 }
 
-.deletebutton {
-    height: 24px;
-    width: 24px;
-    padding: 1px 6px;
-    border-radius: 5px;
-    left: 555px;
-    position: absolute;
-    cursor: pointer;
-    opacity: 0;
+/* переход на следующую/предыдущую страницу */
+
+.link_area {
+    margin-top: 10px;
 }
 
-.todo_element:hover .deletebutton {
-    opacity: 1;
-}
-
-.show_completed_todos {
+.link_area .link {
     text-decoration: none;
     padding: 5px 0;
     display: inline-block;
@@ -143,37 +93,69 @@ h1 {
     transition: color 0.15s;
 }
 
-.completed_link {
-    margin-top: 10px;
-}
-
-.show_completed_todos:hover {
+.link_area .link:hover {
     color: #ffeb00db;
     font-weight: 600;
 }
 
-.completed_count {
-    position: relative;
-    color: #ffeb00db;
-}
+/* список тасков */
 
-.completed_todo_element {
-    display: flex;
-    transition: opacity 0.3s;
-    cursor: default;
-}
-
-.completed_todo_element + .completed_todo_element {
+.task_list {
     margin-top: 20px;
 }
 
-.completed_todo_element_container {
+/* таск */
+
+.task {
     display: flex;
+    transition: opacity 0.3s;
+}
+
+.task_list_completed .task {
+    cursor: default;
+}
+
+.task + .task {
+    margin-top: 20px;
+}
+
+.task.completed, .task.deleted, .task.undone {
+    opacity: 0;
+}
+
+/* таск ареа */
+.task .task_area {
+    display: flex;
+    flex-grow: 1;
     align-items: center;
+    cursor: pointer;
     padding: 0 45px 0 40px;
 }
 
-.undo_button {
+.task_list_completed .task .task_area {
+    padding-left: 50px;
+}
+
+/* таск чбокс */
+
+.task .task_check {
+    display: flex;
+    left: 0;
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    border-radius: 50px;
+    border: dashed 1px;
+    transition: border-color .15s, border-width .15s;
+}
+
+.task:hover .task_check {
+    border: solid 2px #ffeb00db;
+}
+
+/* таск анду */
+
+.task .task_undo {
     display: flex;
     left: 0;
     position: absolute;
@@ -181,22 +163,28 @@ h1 {
     cursor: pointer;
 }
 
-.undo_button:hover {
+.task .task_undo:hover {
     color: #ffeb00db;
     font-weight: 600;
 }
 
-.completed_todo_element_text {
+/* таск текс */
+
+.task .task_text {
     display: flex;
     font-size: 1.6em;
     flex-grow: 1;
     line-height: 1.3;
-    margin-left: 10px;
 }
 
-.deletebutton {
+.task.completed .task_text {
+    text-decoration: line-through;
+}
+
+/* таск дэлит */
+
+.task .task_delete {
     height: 24px;
-    width: 24px;
     padding: 1px 6px;
     border-radius: 5px;
     left: 555px;
@@ -205,24 +193,11 @@ h1 {
     opacity: 0;
 }
 
-.completed_todo_element:hover .deletebutton {
-    opacity: 1;
-}
-
-.show_previous_page {
-    text-decoration: none;
-    padding: 5px 0;
-    display: inline-block;
-    line-height: 1;
-    color: #4e4d4d;
-    transition: color 0.15s;
-}
-
-.show_previous_page:hover {
+.task .task_delete:hover {
     color: #ffeb00db;
     font-weight: 600;
 }
 
-.previous_page_link {
-    margin-top: 10px;
+.task:hover .task_delete {
+    opacity: 1;
 }

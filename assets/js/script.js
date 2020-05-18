@@ -1,89 +1,70 @@
-// ищу форму в ДОМе (в первом случае form это просто моё название)
 let form = document.getElementById('form');
+let inputForm = document.getElementById('creation_field');
 
-// ищу текстовое поле в ДОМе (inputForm это опять же просто моё название)
-let inputForm = document.getElementById('entrybox');
-
-// добавила событие к форме (браузер по нажатию enter/кнопки сам создаёт сабмит, а я добавила своё действие по сабмиту)
 form.addEventListener('submit', event => {
     event.preventDefault();
-    // вызываю функцию по созданию todoшки и передаю туда значение inputForm (а оно соответствует введённому в entrybox)
     createToDo(inputForm.value);
 
     saveToLocalStorage(inputForm.value);
 
-    // удаляю введённый текст из формочки
     inputForm.value = '';
 });
 
-// ищу list_container в ДОМе, чтобы в него потом вставить засабмиченные тудушки
-let listContainer = document.getElementById('list_container');
+let taskList = document.getElementById('task_list');
 
-// inputText - название того текста (это я сама его так назвала), который мне придёт
 function createToDo(inputText) {
-    // создаём новые элементы (на данный момент они никуда не поставлены на странице)
-    let todoElement = document.createElement('div');
-    todoElement.setAttribute('class', 'todo_element');
+    let task = document.createElement('div');
+    task.setAttribute('class', 'task');
 
-    // создаю событие на отмечание todoшки галочкой
-    todoElement.addEventListener('click', event => {
+    task.addEventListener('click', event => {
         event.preventDefault();
 
-        // здесь я вешаю на кликнутый элемент класс комплитид
-        todoElement.setAttribute('class', 'todo_element completed');
+        task.setAttribute('class', 'task completed');
 
         setTimeout(function () {
-            // если checkbox (event.target это checkbox) отмечен галочкой, тооо...
-            // убираем всю todoшку (и текст, и контейнер, и чекбокс и тд).
-            todoElement.remove();
+            task.remove();
 
-            // удаляем элемент из local storage
             removeFromLocalStorage(inputText);
 
             saveToSecondLocalStorage(inputText);
         }, 300);
     })
 
-    let todoElementContainer = document.createElement('div');
-    todoElementContainer.setAttribute('class', 'todo_element_container');
+    let taskArea = document.createElement('div');
+    taskArea.setAttribute('class', 'task_area');
 
-    let todoCheckbox = document.createElement('div');
-    todoCheckbox.setAttribute('class', 'todo_checkbox');
+    let checkbox = document.createElement('div');
+    checkbox.setAttribute('class', 'task_check');
 
     let deleteButton = document.createElement('div');
-    deleteButton.setAttribute('class', 'deletebutton');
+    deleteButton.setAttribute('class', 'task_delete');
     deleteButton.innerHTML = 'del';
 
     deleteButton.addEventListener('click', event => {
-            // "не делай ничего, останови всё"
             event.preventDefault();
-            // чтобы он не пошёл "наверх" к родителю и не посылал событие выше по родителям
             event.stopPropagation();
 
-            todoElement.setAttribute('class', 'todo_element deleted');
+            task.setAttribute('class', 'task deleted');
 
             setTimeout(function () {
-                todoElement.remove();
+                task.remove();
                 removeFromLocalStorage(inputText);
             }, 200);
         }
     )
 
-    let todoElementText = document.createElement('div');
-    todoElementText.setAttribute('class', 'todo_element_text');
+    let taskText = document.createElement('div');
+    taskText.setAttribute('class', 'task_text');
 
-    // заполнила вышестоящий div текстом, который мне пришёл
-    todoElementText.innerHTML = inputText;
+    taskText.innerHTML = inputText;
 
-    // вставила созданные элементы (toDoCheckbox, todoElementText) на страницу (в todoElementContainer) (выше я их как бы придумала, а теперь вставила на страницу)
-    todoElementContainer.appendChild(todoCheckbox);
-    todoElementContainer.appendChild(todoElementText);
-    todoElementContainer.appendChild(deleteButton);
+    taskArea.appendChild(checkbox);
+    taskArea.appendChild(taskText);
+    taskArea.appendChild(deleteButton);
 
-    // и пошло-поехало по аналогии дальше
-    todoElement.appendChild(todoElementContainer);
+    task.appendChild(taskArea);
 
-    listContainer.appendChild(todoElement);
+    taskList.appendChild(task);
 }
 
 
@@ -102,14 +83,7 @@ function saveToSecondLocalStorage(inputText) {
     localStorage.setItem('completed_todos', JSON.stringify(savedTodosArray));
 }
 
-
-// сохраняем текст ОДНОЙ тудушки в local storage. added_todos это я обозначила новый ключ, типа, название ячейки,
-// в которой будут храниться добавленные тудушки
 function saveToLocalStorage(inputText) {
-
-    // три этапа: 1) берём текст тудушек из локал хранилища
-    // преобразуем его в массив (тк в строку не сможем добавить новую, это как бы "бумажка", а нам нужна
-    // "пачка" бумажек (вся нижеприведённая функция нужна для того чтобы преобразовать строку к массиву)
 
     let savedTodosArray;
 
@@ -119,15 +93,12 @@ function saveToLocalStorage(inputText) {
         savedTodosArray = JSON.parse(localStorage.getItem('added_todos'));
     }
 
-    // 2) добавляем ещё одну бумажку (тудушку) в пачку бумажек (массив тудушек)
     savedTodosArray.push(inputText);
 
-    // 3) преобразую весь массив обратно к строке и сохраняю его с ключом added_todos (типа закрыли папочку и засунули обратно)
     localStorage.setItem('added_todos', JSON.stringify(savedTodosArray));
 }
 
 
-// функция, чтобы элемент удалялся из local storage
 function removeFromLocalStorage(inputText) {
     let savedTodos = JSON.parse(localStorage.getItem('added_todos'));
 
@@ -138,12 +109,10 @@ function removeFromLocalStorage(inputText) {
                 return true;
             }
         });
-        // запихала обратно тудушки, которые не надо удалять (неудалённые тудушки)
         localStorage.setItem('added_todos', JSON.stringify(savedTodos));
     }
 }
 
-// извлекаем массив с тудушками из local storage при открытии страницы
 function extractFromLocalStorage() {
     let savedTodos = JSON.parse(localStorage.getItem('added_todos'));
 
@@ -154,6 +123,5 @@ function extractFromLocalStorage() {
     }
 }
 
-// если здесь не написать вызов функции, то при открытии страницы ничего не экстрактнется
 extractFromLocalStorage();
 
