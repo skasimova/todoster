@@ -7,7 +7,7 @@ function completedCount() {
     counter.innerText = countedElements === 0 ? 'none' : countedElements;
 }
 
-function createToDo(inputText) {
+function createTask(inputText) {
     let task = document.createElement('div');
     task.setAttribute('class', 'task');
 
@@ -71,41 +71,41 @@ function createToDo(inputText) {
 }
 
 function removeFromLocalStorage(inputText) {
-    let savedTodos = JSON.parse(localStorage.getItem('completed_todos'));
+    let savedTasks = JSON.parse(localStorage.getItem('completed_tasks'));
 
-    if (savedTodos) {
-        savedTodos.some(function (oneTodoText, index) {
-            if (oneTodoText === inputText) {
-                savedTodos.splice(index, 1);
+    if (savedTasks) {
+        savedTasks.some(function (oneTaskText, index) {
+            if (oneTaskText === inputText) {
+                savedTasks.splice(index, 1);
                 return true;
             }
         });
-        localStorage.setItem('completed_todos', JSON.stringify(savedTodos));
+        localStorage.setItem('completed_tasks', JSON.stringify(savedTasks));
 
     }
 }
 
 function saveToSecondLocalStorage(inputText) {
 
-    let savedTodosArray;
+    let savedTasksArray;
 
-    if (localStorage.getItem('added_todos') === null) {
-        savedTodosArray = [];
+    if (localStorage.getItem('added_tasks') === null) {
+        savedTasksArray = [];
     } else {
-        savedTodosArray = JSON.parse(localStorage.getItem('added_todos'));
+        savedTasksArray = JSON.parse(localStorage.getItem('added_tasks'));
     }
 
-    savedTodosArray.push(inputText);
+    savedTasksArray.push(inputText);
 
-    localStorage.setItem('added_todos', JSON.stringify(savedTodosArray));
+    localStorage.setItem('added_tasks', JSON.stringify(savedTasksArray));
 }
 
 function extractFromLocalStorage() {
-    let savedTodos = JSON.parse(localStorage.getItem('completed_todos'));
+    let savedTasks = JSON.parse(localStorage.getItem('completed_tasks'));
 
-    if (savedTodos) {
-        savedTodos.forEach(function (oneTodoText) {
-            createToDo(oneTodoText);
+    if (savedTasks) {
+        savedTasks.forEach(function (oneTaskText) {
+            createTask(oneTaskText);
         });
     }
 
