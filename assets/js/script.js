@@ -42,27 +42,31 @@ class Storage {
     }
 }
 
-const storage = new Storage('added_tasks');
-const storageCompleted = new Storage('completed_tasks');
+class MainPage {
+    constructor() {
+        this.page = document.getElementById('tasks_page');
 
-let tasksPage = document.getElementById('tasks_page');
+        this.storage = new Storage('added_tasks');
+        this.storageCompleted = new Storage('completed_tasks');
 
-if (tasksPage !== null) {
-    let form = document.getElementById('form');
-    let inputForm = document.getElementById('creation_field');
+        this.form = document.getElementById('form');
+        this.inputForm = document.getElementById('creation_field');
+        this.taskList = document.getElementById('task_list');
+    }
 
-    form.addEventListener('submit', event => {
-        event.preventDefault();
-        createTaskOnFirstPage(inputForm.value);
+    submitForm() {
+        this.form.addEventListener('submit', event => {
+            event.preventDefault();
 
-        storage.addTask(inputForm.value);
+            this.createTask(this.inputForm.value);
 
-        inputForm.value = '';
-    });
+            this.storage.addTask(this.inputForm.value);
 
-    let taskList = document.getElementById('task_list');
+            this.inputForm.value = '';
+        });
+    }
 
-    function createTaskOnFirstPage(inputText) {
+    createTask(taskText) {
         let task = document.createElement('div');
         task.setAttribute('class', 'task');
 
@@ -71,11 +75,11 @@ if (tasksPage !== null) {
 
             task.setAttribute('class', 'task completed');
 
-            setTimeout(function () {
+            setTimeout(() => {
                 task.remove();
 
-                storage.deleteTask(inputText);
-                storageCompleted.addTask(inputText);
+                this.storage.deleteTask(taskText);
+                this.storageCompleted.addTask(taskText);
             }, 300);
         })
 
@@ -90,49 +94,60 @@ if (tasksPage !== null) {
         deleteButton.innerHTML = 'del';
 
         deleteButton.addEventListener('click', event => {
-                event.preventDefault();
-                event.stopPropagation();
+            event.preventDefault();
+            event.stopPropagation();
 
-                task.setAttribute('class', 'task deleted');
+            task.setAttribute('class', 'task deleted');
 
-                setTimeout(function () {
-                    task.remove();
-                    storage.deleteTask(inputText);
-                }, 200);
-            }
-        )
+            setTimeout(() => {
+                task.remove();
+                this.storage.deleteTask(taskText);
+            }, 200);
+        })
 
-        let taskText = document.createElement('div');
-        taskText.setAttribute('class', 'task_text');
-
-        taskText.innerHTML = inputText;
+        let taskTextDiv = document.createElement('div');
+        taskTextDiv.setAttribute('class', 'task_text');
+        taskTextDiv.innerHTML = taskText;
 
         taskArea.appendChild(checkbox);
-        taskArea.appendChild(taskText);
+        taskArea.appendChild(taskTextDiv);
         taskArea.appendChild(deleteButton);
 
         task.appendChild(taskArea);
 
-        taskList.appendChild(task);
+        this.taskList.appendChild(task);
     }
 
-    function extractFromLocalStorageFirstPage() {
-        let tasks = storage.getTasks();
+    isAvailable() {
+        return this.page !== null;
+    }
+
+    createPage() {
+        this.submitForm();
+
+        let tasks = this.storage.getTasks();
 
         if (tasks) {
-            tasks.forEach(function (oneTaskText) {
-                createTaskOnFirstPage(oneTaskText);
+            tasks.forEach(taskText => {
+                this.createTask(taskText);
             });
         }
     }
+}
 
-    extractFromLocalStorageFirstPage();
+const mainPage = new MainPage();
+
+if (mainPage.isAvailable()) {
+    mainPage.createPage();
 }
 
 let completedTasksPage = document.getElementById('completed_tasks_page');
 
 if (completedTasksPage !== null) {
     let taskList = document.getElementById('task_list');
+
+    const storage = new Storage('added_tasks');
+    const storageCompleted = new Storage('completed_tasks');
 
     function completedCount() {
         let countedElements = document.getElementsByClassName('task').length;
