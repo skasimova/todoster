@@ -109,10 +109,7 @@ h1 .title_highlight {
 .task {
     display: flex;
     transition: opacity 0.3s;
-}
-
-.task_list_completed .task {
-    cursor: default;
+    align-items: center;
 }
 
 .task + .task {
@@ -133,6 +130,7 @@ h1 .title_highlight {
 }
 
 .task_list_completed .task .task_area {
+    cursor: default;
     padding-left: 50px;
 }
 
@@ -149,7 +147,7 @@ h1 .title_highlight {
     transition: border-color .15s, border-width .15s;
 }
 
-.task:hover .task_check {
+.task .task_area:hover .task_check {
     border: solid 2px #ffeb00db;
 }
 

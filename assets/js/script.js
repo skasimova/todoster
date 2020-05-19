@@ -51,7 +51,6 @@ class MainPage {
 
         this.form = document.getElementById('form');
         this.inputForm = document.getElementById('creation_field');
-        this.taskList = document.getElementById('task_list');
     }
 
     submitForm() {
@@ -111,11 +110,13 @@ class MainPage {
 
         taskArea.appendChild(checkbox);
         taskArea.appendChild(taskTextDiv);
-        taskArea.appendChild(deleteButton);
 
         task.appendChild(taskArea);
+        task.appendChild(deleteButton);
 
-        this.taskList.appendChild(task);
+        let taskList = document.getElementById('task_list');
+
+        taskList.appendChild(task);
     }
 
     isAvailable() {
@@ -135,28 +136,22 @@ class MainPage {
     }
 }
 
-const mainPage = new MainPage();
+class CompletedTasksPage {
+    constructor() {
+        this.page = document.getElementById('completed_tasks_page');
 
-if (mainPage.isAvailable()) {
-    mainPage.createPage();
-}
+        this.storage = new Storage('added_tasks');
+        this.storageCompleted = new Storage('completed_tasks');
+    }
 
-let completedTasksPage = document.getElementById('completed_tasks_page');
-
-if (completedTasksPage !== null) {
-    let taskList = document.getElementById('task_list');
-
-    const storage = new Storage('added_tasks');
-    const storageCompleted = new Storage('completed_tasks');
-
-    function completedCount() {
-        let countedElements = document.getElementsByClassName('task').length;
+    completedCount() {
+        const countedElements = document.getElementsByClassName('task').length;
         let counter = document.getElementById('completed_count');
 
         counter.innerText = countedElements === 0 ? 'none' : countedElements;
     }
 
-    function createTaskOnSecondPage(inputText) {
+    createTask(taskText) {
         let task = document.createElement('div');
         task.setAttribute('class', 'task');
 
@@ -173,14 +168,13 @@ if (completedTasksPage !== null) {
 
             task.setAttribute('class', 'task undone');
 
-            setTimeout(function () {
-
+            setTimeout(() => {
                 task.remove();
 
-                storageCompleted.deleteTask(inputText);
-                storage.addTask(inputText);
+                this.storageCompleted.deleteTask(taskText);
+                this.storage.addTask(taskText);
 
-                completedCount();
+                this.completedCount();
             }, 300);
         })
 
@@ -194,43 +188,57 @@ if (completedTasksPage !== null) {
 
                 task.setAttribute('class', 'task deleted');
 
-                setTimeout(function () {
+                setTimeout(() => {
                     task.remove();
 
-                    storageCompleted.deleteTask(inputText);
+                    this.storageCompleted.deleteTask(taskText);
 
-                    completedCount();
+                    this.completedCount();
 
                 }, 200);
             }
         )
 
-        let taskText = document.createElement('div');
-        taskText.setAttribute('class', 'task_text');
-        taskText.innerHTML = inputText;
+        let taskTextDiv = document.createElement('div');
+        taskTextDiv.setAttribute('class', 'task_text');
+        taskTextDiv.innerHTML = taskText;
 
         taskArea.appendChild(undoButton);
-        taskArea.appendChild(taskText);
-        taskArea.appendChild(deleteButton);
+        taskArea.appendChild(taskTextDiv);
 
         task.appendChild(taskArea);
+        task.appendChild(deleteButton);
+
+        let taskList = document.getElementById('task_list');
 
         taskList.appendChild(task);
-
     }
 
-    function extractFromLocalStorageSecondPage() {
-        let tasks = storageCompleted.getTasks();
+    isAvailable() {
+        return this.page !== null;
+    }
+
+    createPage() {
+        let tasks = this.storageCompleted.getTasks();
 
         if (tasks) {
-            tasks.forEach(function (oneTaskText) {
-                createTaskOnSecondPage(oneTaskText);
+            tasks.forEach(taskText => {
+                this.createTask(taskText);
             });
         }
 
-        completedCount();
-
+        this.completedCount();
     }
+}
 
-    extractFromLocalStorageSecondPage();
+const mainPage = new MainPage();
+
+if (mainPage.isAvailable()) {
+    mainPage.createPage();
+}
+
+const completedTasksPage = new CompletedTasksPage();
+
+if (completedTasksPage.isAvailable()) {
+    completedTasksPage.createPage();
 }
