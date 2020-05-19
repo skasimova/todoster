@@ -38,7 +38,7 @@ h1 .title_highlight {
     color: #ffe000;
 }
 
-/* главный контейнер */
+/* main container */
 
 .container {
     position: relative;
@@ -48,7 +48,7 @@ h1 .title_highlight {
     width: 600px;
 }
 
-/* область создания таска */
+/* area of adding a task */
 
 .creation_area {
     position: relative;
@@ -78,7 +78,7 @@ h1 .title_highlight {
     border-radius: 5px;
 }
 
-/* переход на следующую/предыдущую страницу */
+/* next/previous page link */
 
 .link_area {
     margin-top: 10px;
@@ -98,13 +98,13 @@ h1 .title_highlight {
     font-weight: 600;
 }
 
-/* список тасков */
+/* task list */
 
 .task_list {
     margin-top: 20px;
 }
 
-/* таск */
+/* tasks */
 
 .task {
     display: flex;
@@ -120,7 +120,8 @@ h1 .title_highlight {
     opacity: 0;
 }
 
-/* таск ареа */
+/* task area */
+
 .task .task_area {
     display: flex;
     flex-grow: 1;
@@ -134,7 +135,7 @@ h1 .title_highlight {
     padding-left: 50px;
 }
 
-/* таск чбокс */
+/* checkbox */
 
 .task .task_check {
     display: flex;
@@ -151,7 +152,7 @@ h1 .title_highlight {
     border: solid 2px #ffeb00db;
 }
 
-/* таск анду */
+/* undo button */
 
 .task .task_undo {
     display: flex;
@@ -166,7 +167,7 @@ h1 .title_highlight {
     font-weight: 600;
 }
 
-/* таск текс */
+/* text of tasks */
 
 .task .task_text {
     display: flex;
@@ -179,7 +180,7 @@ h1 .title_highlight {
     text-decoration: line-through;
 }
 
-/* таск дэлит */
+/* delete button */
 
 .task .task_delete {
     height: 24px;
