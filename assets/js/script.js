@@ -57,9 +57,16 @@ class MainPage {
         this.form.addEventListener('submit', event => {
             event.preventDefault();
 
-            this.createTask(this.inputForm.value);
+            const trimmedValue = this.inputForm.value.trim();
 
-            this.storage.addTask(this.inputForm.value);
+            if (trimmedValue === "") {
+                alert('Please enter something other than spaces ;)');
+                return false;
+            }
+
+            this.createTask(trimmedValue);
+
+            this.storage.addTask(trimmedValue);
 
             this.inputForm.value = '';
         });
