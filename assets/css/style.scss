@@ -43,7 +43,7 @@ h1 {
     font-size: 3em;
   }
 
-  .title_highlight {
+  .title-highlight {
     color: #ffe000;
   }
 }
@@ -69,14 +69,14 @@ h1 {
 
 /* area of adding a task */
 
-.creation_area {
+.creation-area {
   position: relative;
 }
 
-.creation_form {
+.creation-form {
   display: flex;
 
-  .creation_field {
+  .creation-field {
     background-color: white;
     display: flex;
     flex-grow: 1;
@@ -102,7 +102,7 @@ h1 {
   }
 
 
-  .add_button {
+  .add-button {
     background-color: #ffeb00db;
     padding: 0 12px;
     border: 1px solid #ffe000d9;
@@ -112,7 +112,7 @@ h1 {
 
 /* next/previous page link */
 
-.link_area {
+.link-area {
   margin-top: 10px;
 
   .link {
@@ -132,7 +132,7 @@ h1 {
 
 /* task list */
 
-.task_list {
+.task-list {
   position: relative;
   margin-top: 25px;
 }
@@ -159,7 +159,7 @@ h1 {
 
   /* task area */
 
-  .task_area {
+  .task-area {
     display: flex;
     flex-grow: 1;
     align-items: center;
@@ -175,7 +175,7 @@ h1 {
     }
 
     &:hover {
-      .task_check {
+      .task-check {
         border: solid 2px #ffeb00db;
       }
     }
@@ -183,7 +183,7 @@ h1 {
 
   /* checkbox */
 
-  .task_check {
+  .task-check {
     display: flex;
     left: 0;
     position: absolute;
@@ -206,7 +206,7 @@ h1 {
 
   /* undo button */
 
-  .task_undo {
+  .task-undo {
     display: flex;
     left: 0;
     position: absolute;
@@ -221,11 +221,12 @@ h1 {
 
   /* text of tasks */
 
-  .task_text {
+  .task-text {
     display: flex;
     flex-grow: 1;
     font-size: 1.2em;
     line-height: 1.1;
+    word-break: break-word;
 
     @media (min-width: 576px) {
       font-size: 1.4em;
@@ -238,14 +239,14 @@ h1 {
   }
 
   &.completed {
-    .task_text {
+    .task-text {
       text-decoration: line-through;
     }
   }
 
   /* delete button */
 
-  .task_delete {
+  .task-delete {
     display: flex;
     align-items: center;
     padding: 3px 6px;
@@ -253,7 +254,7 @@ h1 {
     cursor: pointer;
 
     @media (min-width: 768px) {
-      .task .task_delete {
+      .task .task-delete {
         opacity: 0;
       }
     }
@@ -267,16 +268,16 @@ h1 {
 
   &:hover {
     @media (min-width: 768px) {
-      .task_delete {
+      .task-delete {
         opacity: 1;
       }
     }
   }
 }
 
-.task_list_completed {
+.task-list-completed {
   .task {
-    .task_area {
+    .task-area {
       cursor: default;
       padding-left: 50px;
     }

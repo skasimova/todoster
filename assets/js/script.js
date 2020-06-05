@@ -44,13 +44,13 @@ class Storage {
 
 class MainPage {
     constructor() {
-        this.page = document.getElementById('tasks_page');
+        this.page = document.getElementById('tasks-page');
 
-        this.storage = new Storage('added_tasks');
-        this.storageCompleted = new Storage('completed_tasks');
+        this.storage = new Storage('added-tasks');
+        this.storageCompleted = new Storage('completed-tasks');
 
         this.form = document.getElementById('form');
-        this.inputForm = document.getElementById('creation_field');
+        this.inputForm = document.getElementById('creation-field');
     }
 
     submitForm() {
@@ -90,13 +90,13 @@ class MainPage {
         })
 
         let taskArea = document.createElement('div');
-        taskArea.setAttribute('class', 'task_area');
+        taskArea.setAttribute('class', 'task-area');
 
         let checkbox = document.createElement('div');
-        checkbox.setAttribute('class', 'task_check');
+        checkbox.setAttribute('class', 'task-check');
 
         let deleteButton = document.createElement('div');
-        deleteButton.setAttribute('class', 'task_delete');
+        deleteButton.setAttribute('class', 'task-delete');
         deleteButton.innerHTML = 'del';
 
         deleteButton.addEventListener('click', event => {
@@ -112,7 +112,7 @@ class MainPage {
         })
 
         let taskTextDiv = document.createElement('div');
-        taskTextDiv.setAttribute('class', 'task_text');
+        taskTextDiv.setAttribute('class', 'task-text');
         taskTextDiv.innerHTML = taskText;
 
         taskArea.appendChild(checkbox);
@@ -121,7 +121,7 @@ class MainPage {
         task.appendChild(taskArea);
         task.appendChild(deleteButton);
 
-        let taskList = document.getElementById('task_list');
+        let taskList = document.getElementById('task-list');
 
         taskList.appendChild(task);
     }
@@ -145,15 +145,15 @@ class MainPage {
 
 class CompletedTasksPage {
     constructor() {
-        this.page = document.getElementById('completed_tasks_page');
+        this.page = document.getElementById('completed-tasks-page');
 
-        this.storage = new Storage('added_tasks');
-        this.storageCompleted = new Storage('completed_tasks');
+        this.storage = new Storage('added-tasks');
+        this.storageCompleted = new Storage('completed-tasks');
     }
 
     completedCount() {
         const countedElements = document.getElementsByClassName('task').length;
-        let counter = document.getElementById('completed_count');
+        let counter = document.getElementById('completed-count');
 
         counter.innerText = countedElements === 0 ? 'none' : countedElements;
     }
@@ -163,10 +163,10 @@ class CompletedTasksPage {
         task.setAttribute('class', 'task');
 
         let taskArea = document.createElement("div");
-        taskArea.setAttribute('class', 'task_area');
+        taskArea.setAttribute('class', 'task-area');
 
         let undoButton = document.createElement('div');
-        undoButton.setAttribute('class', 'task_undo');
+        undoButton.setAttribute('class', 'task-undo');
         undoButton.innerHTML = 'undo';
 
         undoButton.addEventListener('click', event => {
@@ -186,7 +186,7 @@ class CompletedTasksPage {
         })
 
         let deleteButton = document.createElement("div");
-        deleteButton.setAttribute('class', 'task_delete');
+        deleteButton.setAttribute('class', 'task-delete');
         deleteButton.innerHTML = 'del';
 
         deleteButton.addEventListener('click', event => {
@@ -207,7 +207,7 @@ class CompletedTasksPage {
         )
 
         let taskTextDiv = document.createElement('div');
-        taskTextDiv.setAttribute('class', 'task_text');
+        taskTextDiv.setAttribute('class', 'task-text');
         taskTextDiv.innerHTML = taskText;
 
         taskArea.appendChild(undoButton);
@@ -216,7 +216,7 @@ class CompletedTasksPage {
         task.appendChild(taskArea);
         task.appendChild(deleteButton);
 
-        let taskList = document.getElementById('task_list');
+        let taskList = document.getElementById('task-list');
 
         taskList.appendChild(task);
     }

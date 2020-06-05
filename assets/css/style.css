@@ -45,7 +45,7 @@ h1 {
     font-size: 3em;
   }
 }
-h1 .title_highlight {
+h1 .title-highlight {
   color: #ffe000;
 }
 
@@ -70,14 +70,14 @@ h1 .title_highlight {
 }
 
 /* area of adding a task */
-.creation_area {
+.creation-area {
   position: relative;
 }
 
-.creation_form {
+.creation-form {
   display: flex;
 }
-.creation_form .creation_field {
+.creation-form .creation-field {
   background-color: white;
   display: flex;
   flex-grow: 1;
@@ -90,19 +90,19 @@ h1 .title_highlight {
   border-radius: 5px;
 }
 @media (min-width: 576px) {
-  .creation_form .creation_field {
+  .creation-form .creation-field {
     height: 42px;
   }
 }
 @media (min-width: 768px) {
-  .creation_form .creation_field {
+  .creation-form .creation-field {
     height: 50px;
   }
 }
-.creation_form .creation_field:focus {
+.creation-form .creation-field:focus {
   outline: none;
 }
-.creation_form .add_button {
+.creation-form .add-button {
   background-color: #ffeb00db;
   padding: 0 12px;
   border: 1px solid #ffe000d9;
@@ -110,10 +110,10 @@ h1 .title_highlight {
 }
 
 /* next/previous page link */
-.link_area {
+.link-area {
   margin-top: 10px;
 }
-.link_area .link {
+.link-area .link {
   text-decoration: none;
   padding: 5px 0;
   display: inline-block;
@@ -121,13 +121,13 @@ h1 .title_highlight {
   color: #4e4d4d;
   transition: color 0.15s;
 }
-.link_area .link:hover {
+.link-area .link:hover {
   color: #ffeb00db;
   font-weight: 600;
 }
 
 /* task list */
-.task_list {
+.task-list {
   position: relative;
   margin-top: 25px;
 }
@@ -153,7 +153,7 @@ h1 .title_highlight {
 .task.completed, .task.deleted, .task.undone {
   opacity: 0;
 }
-.task .task_area {
+.task .task-area {
   display: flex;
   flex-grow: 1;
   align-items: center;
@@ -161,19 +161,19 @@ h1 .title_highlight {
   padding-left: 30px;
 }
 @media (min-width: 576px) {
-  .task .task_area {
+  .task .task-area {
     padding-left: 35px;
   }
 }
 @media (min-width: 768px) {
-  .task .task_area {
+  .task .task-area {
     padding-left: 40px;
   }
 }
-.task .task_area:hover .task_check {
+.task .task-area:hover .task-check {
   border: solid 2px #ffeb00db;
 }
-.task .task_check {
+.task .task-check {
   display: flex;
   left: 0;
   position: absolute;
@@ -184,51 +184,50 @@ h1 .title_highlight {
   transition: border-color 0.15s, border-width 0.15s;
 }
 @media (min-width: 576px) {
-  .task .task_check {
+  .task .task-check {
     height: 22px;
     width: 22px;
   }
 }
 @media (min-width: 768px) {
-  .task .task_check {
+  .task .task-check {
     height: 24px;
     width: 24px;
   }
 }
-.task .task_undo {
+.task .task-undo {
   display: flex;
   left: 0;
   position: absolute;
   color: #0000001f;
   cursor: pointer;
 }
-.task .task_undo:hover {
+.task .task-undo:hover {
   color: #ffeb00db;
   font-weight: 600;
 }
-.task .task_text {
+.task .task-text {
   display: flex;
   flex-grow: 1;
-  font-size: 1.2em; 
+  font-size: 1.2em;
   line-height: 1.1;
   word-break: break-word;
 }
-
 @media (min-width: 576px) {
-  .task .task_text {
+  .task .task-text {
     font-size: 1.4em;
   }
 }
 @media (min-width: 768px) {
-  .task .task_text {
+  .task .task-text {
     font-size: 1.6em;
     line-height: 1.3;
   }
 }
-.task.completed .task_text {
+.task.completed .task-text {
   text-decoration: line-through;
 }
-.task .task_delete {
+.task .task-delete {
   display: flex;
   align-items: center;
   padding: 3px 6px;
@@ -236,21 +235,21 @@ h1 .title_highlight {
   cursor: pointer;
 }
 @media (min-width: 768px) {
-  .task .task_delete .task .task_delete {
+  .task .task-delete .task .task-delete {
     opacity: 0;
   }
 }
-.task .task_delete:hover {
+.task .task-delete:hover {
   color: #ffeb00db;
   font-weight: 600;
 }
 @media (min-width: 768px) {
-  .task:hover .task_delete {
+  .task:hover .task-delete {
     opacity: 1;
   }
 }
 
-.task_list_completed .task .task_area {
+.task-list-completed .task .task-area {
   cursor: default;
   padding-left: 50px;
 }
